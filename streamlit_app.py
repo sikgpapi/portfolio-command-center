@@ -218,7 +218,7 @@ with tab_port:
 with tab_dash:
     q,err=quotes(df.symbol.tolist())
     if err:
-        st.info("Live quotes unavailable. Configure your API key to enable the daily engine.")
+        st.error(f"Live quotes unavailable: {err}")
         df["price"]=0.0; df["change_pct"]=0.0
     else:
         df["price"]=df.symbol.map(lambda s:q.get(s,{}).get("close",0.0))
